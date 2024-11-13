@@ -8,11 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./vim.nix
     ];
   
   #Make ready for nix flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+  #Sway
+  security.polkit.enable = true;
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
@@ -59,6 +62,10 @@
      pulse.enable = true;
    };
 
+  # Enable Bluetooth
+  hardware.bluetooth.enable = true; # enables support for Bluetooth
+  hardware.bluetooth.powerOnBoot = true; # powers up the default Bluetooth controller on boot
+  services.blueman.enable = true;
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
@@ -80,6 +87,10 @@
      wget
      firefox
      zsh
+     j4-dmenu-desktop
+     git
+     bluez
+     usbutils
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
