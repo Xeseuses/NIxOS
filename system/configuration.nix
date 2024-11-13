@@ -8,11 +8,14 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      ./vim.nix
+      ./vm.nix
     ];
   
   #Make ready for nix flakes
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+  #Allow-Unfree
+  nixpkgs.config.allowUnfree = true;
 
   #Sway
   security.polkit.enable = true;
@@ -79,6 +82,26 @@
        tree
      ];
    };
+  users.users.arte = {
+     isNormalUser = true;
+     initialPassword= "P@ssw0rd02";
+     extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     packages = with pkgs; [
+       firefox
+       tree    
+       alacritty
+       git
+       chromium
+       grim
+       slurp
+       wl-clipboard
+       brightnessctl
+       vscode
+       nodejs
+       nmap
+     ];
+   };
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -91,6 +114,7 @@
      git
      bluez
      usbutils
+     neofetch
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -104,7 +128,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
