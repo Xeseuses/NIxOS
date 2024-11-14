@@ -80,12 +80,16 @@
      packages = with pkgs; [
        firefox
        tree
+       citrix_workspace
      ];
    };
   users.users.arte = {
      isNormalUser = true;
      initialPassword= "P@ssw0rd02";
      extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
+     openssh.authorizedKeys.keys = [
+     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICu+o6NJiF8P/uo1mKiKLlArgQGK2pP3Aa8ZoLmPzyo/ arte@fedora"
+     ];
      packages = with pkgs; [
        firefox
        tree    
@@ -115,6 +119,7 @@
      bluez
      usbutils
      neofetch
+     waypipe
    ];
 
   # Some programs need SUID wrappers, can be configured further or are

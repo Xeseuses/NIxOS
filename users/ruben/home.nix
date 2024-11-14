@@ -34,6 +34,7 @@
     chromium
     remmina
     pinentry-qt
+    waypipe
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
