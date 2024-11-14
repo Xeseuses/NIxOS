@@ -81,6 +81,7 @@
        firefox
        tree
        citrix_workspace
+       rustdesk
      ];
    };
   users.users.arte = {
@@ -120,6 +121,7 @@
      usbutils
      neofetch
      waypipe
+     libreoffice-qt
    ];
 
   # Some programs need SUID wrappers, can be configured further or are
